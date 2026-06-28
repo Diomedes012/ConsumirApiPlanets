@@ -35,8 +35,10 @@ interface DragonBallApi {
     ): Response<CharacterResponseDto>
 
     @GET("characters")
-    suspend fun getCharactersByName(
-        @Query("name") name: String
+    suspend fun filterCharacters(
+        @Query("name") name: String? = null,
+        @Query("gender") gender: String? = null,
+        @Query("race") race: String? = null
     ): Response<List<CharacterDto>>
 
     @GET("characters/{id}")
