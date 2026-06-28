@@ -6,6 +6,6 @@ import ucne.edu.consumirapiplanets.domain.model.Character
 
 interface CharacterRepository {
     fun getCharacters(page: Int = 1, limit: Int = 10): Flow<Resource<List<Character>>>
-    fun getCharactersByName(name: String): Flow<Resource<List<Character>>>
+    fun filterCharacters(name: String?, gender: String?, race: String?): Flow<Resource<List<Character>>>
     fun getCharacterDetail(id: Int): Flow<Resource<Character>>
 }
