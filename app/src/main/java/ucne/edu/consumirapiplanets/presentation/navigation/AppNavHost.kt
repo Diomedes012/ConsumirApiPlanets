@@ -6,10 +6,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import ucne.edu.consumirapiplanets.presentation.detail.PlanetDetailScreen
-import ucne.edu.consumirapiplanets.presentation.list.PlanetListScreen
+import ucne.edu.consumirapiplanets.presentation.characters.detail.CharacterDetailScreen
+import ucne.edu.consumirapiplanets.presentation.characters.list.CharacterListScreen
+import ucne.edu.consumirapiplanets.presentation.planets.detail.PlanetDetailScreen
+import ucne.edu.consumirapiplanets.presentation.planets.list.PlanetListScreen
 
 @Composable
 fun AppNavHost(
@@ -33,15 +34,30 @@ fun AppNavHost(
         composable(
             route = Screen.PlanetDetail.route,
             arguments = listOf(
-                navArgument("planetId") {
-                    type = NavType.StringType
-                }
+                navArgument("planetId") { type = NavType.StringType }
             )
         ) {
             PlanetDetailScreen(
-                onBack = {
-                    navController.popBackStack()
+                onBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(route = Screen.CharacterList.route) {
+            CharacterListScreen(
+                onCharacterClick = { characterId ->
+                    navController.navigate(Screen.CharacterDetail.createRoute(characterId))
                 }
+            )
+        }
+
+        composable(
+            route = Screen.CharacterDetail.route,
+            arguments = listOf(
+                navArgument("characterId") { type = NavType.StringType }
+            )
+        ) {
+            CharacterDetailScreen(
+                onBack = { navController.popBackStack() }
             )
         }
     }
