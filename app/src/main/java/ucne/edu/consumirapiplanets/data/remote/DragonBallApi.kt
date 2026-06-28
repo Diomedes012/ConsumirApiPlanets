@@ -4,6 +4,10 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import ucne.edu.consumirapiplanets.data.remote.dto.character.CharacterDto
+import ucne.edu.consumirapiplanets.data.remote.dto.character.CharacterResponseDto
+import ucne.edu.consumirapiplanets.data.remote.dto.planet.PlanetDto
+import ucne.edu.consumirapiplanets.data.remote.dto.planet.PlanetResponseDto
 
 interface DragonBallApi {
     @GET("planets")
@@ -23,4 +27,20 @@ interface DragonBallApi {
     suspend fun getPlanetDetail(
         @Path("id") id: Int
     ): Response<PlanetDto>
+
+    @GET("characters")
+    suspend fun getCharacters(
+        @Query("page") page: Int = 1,
+        @Query("limit") limit: Int = 10
+    ): Response<CharacterResponseDto>
+
+    @GET("characters")
+    suspend fun getCharactersByName(
+        @Query("name") name: String
+    ): Response<List<CharacterDto>>
+
+    @GET("characters/{id}")
+    suspend fun getCharacterDetail(
+        @Path("id") id: Int
+    ): Response<CharacterDto>
 }
