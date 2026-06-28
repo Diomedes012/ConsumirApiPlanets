@@ -55,16 +55,41 @@ fun CharacterListBodyScreen(
     ) { padding ->
         Column(modifier = Modifier.padding(padding).fillMaxSize()) {
 
-            ElevatedCard (modifier = Modifier.padding(16.dp ).fillMaxWidth()) {
+            ElevatedCard(modifier = Modifier.padding(16.dp).fillMaxWidth()) {
                 Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+
                     OutlinedTextField(
                         value = state.filterName,
                         onValueChange = { onEvent(CharacterListEvent.UpdateName(it)) },
-                        label = { Text("Buscar personaje (ej. Goku)") },
-                        modifier = Modifier.fillMaxWidth()
+                        label = { Text("Nombre (ej. Goku)") },
+                        modifier = Modifier.fillMaxWidth(),
+                        singleLine = true
                     )
-                    Button (onClick = { onEvent(CharacterListEvent.Search) }, modifier = Modifier.align(
-                        Alignment.End)) {
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        OutlinedTextField(
+                            value = state.filterGender,
+                            onValueChange = { onEvent(CharacterListEvent.UpdateGender(it)) },
+                            label = { Text("Género (ej. Male)") },
+                            modifier = Modifier.weight(1f),
+                            singleLine = true
+                        )
+                        OutlinedTextField(
+                            value = state.filterRace,
+                            onValueChange = { onEvent(CharacterListEvent.UpdateRace(it)) },
+                            label = { Text("Raza (ej. Saiyan)") },
+                            modifier = Modifier.weight(1f),
+                            singleLine = true
+                        )
+                    }
+
+                    Button(
+                        onClick = { onEvent(CharacterListEvent.Search) },
+                        modifier = Modifier.align(Alignment.End)
+                    ) {
                         Text("Buscar")
                     }
                 }
