@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ucne.edu.consumirapiplanets.presentation.navigation.AppNavHost
+import ucne.edu.consumirapiplanets.presentation.navigation.MainScreen
 import ucne.edu.consumirapiplanets.ui.theme.ConsumirApiPlanetsTheme
 
 @AndroidEntryPoint
@@ -29,9 +30,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val navController = rememberNavController()
-
-                    AppNavHost(navController = navController)
+                    MainScreen()
                 }
             }
         }
