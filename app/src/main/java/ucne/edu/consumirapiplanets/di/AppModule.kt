@@ -9,9 +9,12 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import ucne.edu.consumirapiplanets.data.remote.DragonBallApi
+import ucne.edu.consumirapiplanets.data.remote.remotedatasource.CharacterRemoteDataSource
 import ucne.edu.consumirapiplanets.data.remote.remotedatasource.PlanetRemoteDataSource
-import ucne.edu.consumirapiplanets.data.remote.repository.PlanetRepositoryImpl
-import ucne.edu.consumirapiplanets.domain.Repository.PlanetRepository
+import ucne.edu.consumirapiplanets.data.repository.CharacterRepositoryImpl
+import ucne.edu.consumirapiplanets.data.repository.PlanetRepositoryImpl
+import ucne.edu.consumirapiplanets.domain.repository.CharacterRepository
+import ucne.edu.consumirapiplanets.domain.repository.PlanetRepository
 import javax.inject.Singleton
 
 @Module
@@ -40,5 +43,11 @@ class AppModule {
     @Singleton
     fun providePlanetRepository(api: DragonBallApi): PlanetRepository {
         return PlanetRepositoryImpl(PlanetRemoteDataSource(api))
+    }
+
+    @Provides
+    @Singleton
+    fun provideCharacterRepository(api: DragonBallApi): CharacterRepository {
+        return CharacterRepositoryImpl(CharacterRemoteDataSource(api))
     }
 }
