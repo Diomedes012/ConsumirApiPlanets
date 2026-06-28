@@ -36,9 +36,14 @@ class CharacterListViewModel @Inject constructor(
     private fun loadCharacters() {
         viewModelScope.launch {
             val current = _state.value
-            getCharactersUseCase(name = current.filterName).collect { result ->
+            getCharactersUseCase(
+                name = current.filterName,
+                gender = current.filterGender,
+                race = current.filterRace).collect { result ->
                 when (result) {
-                    is Resource.Loading -> _state.update { it.copy(isLoading = true) }
+                    is Resource.Loading -> _state.update {
+                        it.copy(isLoading = true, characters = emptyList(), error = null)
+                    }
                     is Resource.Success -> _state.update {
                         it.copy(isLoading = false, characters = result.data ?: emptyList(), error = null)
                     }

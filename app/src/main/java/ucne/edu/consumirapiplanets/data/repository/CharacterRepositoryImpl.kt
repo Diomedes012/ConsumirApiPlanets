@@ -19,9 +19,9 @@ class CharacterRepositoryImpl @Inject constructor(
         }.onFailure { emit(Resource.Error(it.message ?: "Error desconocido")) }
     }
 
-    override fun filterCharacters(name: String?, gender: String?, race: String?): Flow<Resource<List<Character>>> = flow {
+    override fun filterCharactersByName(name: String) = flow {
         emit(Resource.Loading())
-        remoteDataSource.filterCharacters(name, gender, race).onSuccess { dtoList ->
+        remoteDataSource.filterCharactersByName(name).onSuccess { dtoList ->
             emit(Resource.Success(dtoList.map { it.toDomain() }))
         }.onFailure { emit(Resource.Error(it.message ?: "Error desconocido")) }
     }

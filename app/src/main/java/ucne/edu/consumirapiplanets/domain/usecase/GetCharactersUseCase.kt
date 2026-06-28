@@ -1,6 +1,7 @@
 package ucne.edu.consumirapiplanets.domain.usecase
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import ucne.edu.consumirapiplanets.data.remote.Resource
 import ucne.edu.consumirapiplanets.domain.repository.CharacterRepository
 import ucne.edu.consumirapiplanets.domain.model.Character
@@ -15,16 +16,33 @@ class GetCharactersUseCase @Inject constructor(
         race: String? = null
     ): Flow<Resource<List<Character>>> {
 
-        val hasNoFilters = name.isNullOrBlank() && gender.isNullOrBlank() && race.isNullOrBlank()
-
-        return if (hasNoFilters) {
+        val apiFlow = if (name.isNullOrBlank()) {
             repository.getCharacters()
         } else {
-            repository.filterCharacters(
-                name = name.takeIf { !it.isNullOrBlank() },
-                gender = gender.takeIf { !it.isNullOrBlank() },
-                race = race.takeIf { !it.isNullOrBlank() }
-            )
+            repository.filterCharactersByName(name)
+        }
+
+        return apiFlow.map { resource ->
+            when (resource) {
+                is Resource.Success -> {
+                    var filteredList = resource.data ?: emptyList()
+
+                    if (!gender.isNullOrBlank()) {
+                        filteredList = filteredList.filter {
+                            it.gender.equals(gender.trim(), ignoreCase = true)
+                        }
+                    }
+
+                    if (!race.isNullOrBlank()) {
+                        filteredList = filteredList.filter {
+                            it.race.equals(race.trim(), ignoreCase = true)
+                        }
+                    }
+
+                    Resource.Success(filteredList)
+                }
+                else -> resource
+            }
         }
     }
 }
