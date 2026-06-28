@@ -16,9 +16,9 @@ class CharacterRemoteDataSource @Inject constructor(
         } catch (e: Exception) { Result.failure(e) }
     }
 
-    suspend fun getCharactersByName(name: String): Result<List<CharacterDto>> {
+    suspend fun filterCharacters(name: String?, gender: String?, race: String?): Result<List<CharacterDto>> {
         return try {
-            val response = api.getCharactersByName(name)
+            val response = api.filterCharacters(name, gender, race)
             if (response.isSuccessful) Result.success(response.body()!!)
             else Result.failure(Exception("Error de red ${response.code()}"))
         } catch (e: Exception) { Result.failure(e) }
