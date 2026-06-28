@@ -1,4 +1,4 @@
-package ucne.edu.consumirapiplanets.presentation.list
+package ucne.edu.consumirapiplanets.presentation.planets.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -1,4 +1,4 @@
-package ucne.edu.consumirapiplanets.presentation.detail
+package ucne.edu.consumirapiplanets.presentation.planets.detail
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
