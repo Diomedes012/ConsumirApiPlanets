@@ -2,7 +2,7 @@ package ucne.edu.consumirapiplanets.domain.usecase
 
 import kotlinx.coroutines.flow.Flow
 import ucne.edu.consumirapiplanets.data.remote.Resource
-import ucne.edu.consumirapiplanets.domain.Repository.PlanetRepository
+import ucne.edu.consumirapiplanets.domain.repository.PlanetRepository
 import ucne.edu.consumirapiplanets.domain.model.Planet
 import javax.inject.Inject
 

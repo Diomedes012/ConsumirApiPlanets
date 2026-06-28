@@ -1,6 +1,6 @@
 package ucne.edu.consumirapiplanets.domain.usecase
 
-import ucne.edu.consumirapiplanets.domain.Repository.PlanetRepository
+import ucne.edu.consumirapiplanets.domain.repository.PlanetRepository
 import javax.inject.Inject
 
 class GetPlanetDetailUseCase @Inject constructor(
