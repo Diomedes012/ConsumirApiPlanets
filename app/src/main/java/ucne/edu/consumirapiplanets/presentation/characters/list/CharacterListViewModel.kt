@@ -27,6 +27,8 @@ class CharacterListViewModel @Inject constructor(
     fun onEvent(event: CharacterListEvent) {
         when (event) {
             is CharacterListEvent.UpdateName -> _state.update { it.copy(filterName = event.name) }
+            is CharacterListEvent.UpdateGender -> _state.update { it.copy(filterGender = event.gender) }
+            is CharacterListEvent.UpdateRace -> _state.update { it.copy(filterRace = event.race) }
             CharacterListEvent.Search -> loadCharacters()
         }
     }
