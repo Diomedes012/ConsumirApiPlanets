@@ -9,11 +9,22 @@ import javax.inject.Inject
 class GetCharactersUseCase @Inject constructor(
     private val repository: CharacterRepository
 ) {
-    operator fun invoke(name: String? = null): Flow<Resource<List<Character>>> {
-        return if (name.isNullOrBlank()) {
+    operator fun invoke(
+        name: String? = null,
+        gender: String? = null,
+        race: String? = null
+    ): Flow<Resource<List<Character>>> {
+
+        val hasNoFilters = name.isNullOrBlank() && gender.isNullOrBlank() && race.isNullOrBlank()
+
+        return if (hasNoFilters) {
             repository.getCharacters()
         } else {
-            repository.getCharactersByName(name)
+            repository.filterCharacters(
+                name = name.takeIf { !it.isNullOrBlank() },
+                gender = gender.takeIf { !it.isNullOrBlank() },
+                race = race.takeIf { !it.isNullOrBlank() }
+            )
         }
     }
 }
