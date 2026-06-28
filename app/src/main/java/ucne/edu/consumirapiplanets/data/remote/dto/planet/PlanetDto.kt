@@ -1,4 +1,4 @@
-package ucne.edu.consumirapiplanets.data.remote
+package ucne.edu.consumirapiplanets.data.remote.dto.planet
 
 import com.squareup.moshi.Json
 import ucne.edu.consumirapiplanets.domain.model.Planet

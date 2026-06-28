@@ -1,4 +1,4 @@
-package ucne.edu.consumirapiplanets.domain.Repository
+package ucne.edu.consumirapiplanets.domain.repository
 
 import kotlinx.coroutines.flow.Flow
 import ucne.edu.consumirapiplanets.data.remote.Resource

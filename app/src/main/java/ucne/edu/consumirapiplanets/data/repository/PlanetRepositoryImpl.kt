@@ -1,10 +1,10 @@
-package ucne.edu.consumirapiplanets.data.remote.repository
+package ucne.edu.consumirapiplanets.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import ucne.edu.consumirapiplanets.data.remote.Resource
 import ucne.edu.consumirapiplanets.data.remote.remotedatasource.PlanetRemoteDataSource
-import ucne.edu.consumirapiplanets.domain.Repository.PlanetRepository
+import ucne.edu.consumirapiplanets.domain.repository.PlanetRepository
 import ucne.edu.consumirapiplanets.domain.model.Planet
 import javax.inject.Inject
 

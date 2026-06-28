@@ -1,4 +1,4 @@
-package ucne.edu.consumirapiplanets.presentation.list
+package ucne.edu.consumirapiplanets.presentation.planets.list
 
 import ucne.edu.consumirapiplanets.domain.model.Planet
 
