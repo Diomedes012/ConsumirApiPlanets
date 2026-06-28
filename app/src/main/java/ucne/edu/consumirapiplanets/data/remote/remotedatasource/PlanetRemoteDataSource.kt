@@ -2,8 +2,8 @@ package ucne.edu.consumirapiplanets.data.remote.remotedatasource
 
 import coil.network.HttpException
 import ucne.edu.consumirapiplanets.data.remote.DragonBallApi
-import ucne.edu.consumirapiplanets.data.remote.PlanetDto
-import ucne.edu.consumirapiplanets.data.remote.PlanetResponseDto
+import ucne.edu.consumirapiplanets.data.remote.dto.planet.PlanetDto
+import ucne.edu.consumirapiplanets.data.remote.dto.planet.PlanetResponseDto
 import javax.inject.Inject
 
 class PlanetRemoteDataSource @Inject constructor(
